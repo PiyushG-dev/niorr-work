@@ -1,0 +1,19 @@
+.container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #1c1d20;
+    z-index: 1000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+}
+
+.container h3{
+    font-family: helve;
+    font-size: 1.2rem;
+}
