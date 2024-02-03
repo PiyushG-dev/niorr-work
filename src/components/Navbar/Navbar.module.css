@@ -15,11 +15,32 @@
     color: #ffffff;
 }
 
-.menu{
+.menu p{
     font-size: 1.2rem;
     color: #ffffff;
     cursor: pointer;
 }
+
+.menu{
+    position: relative;
+    width: max-content;
+}
+
+.menu::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: 0.3s all;
+}
+
+.menu:hover.menu::after{
+    width: 100%;
+}
+
 
 .menu_container{
     width: 100%;
@@ -36,13 +57,33 @@
     transform: translateY(-1000px);
 }
 
-.menu_container .close{
+.close p{
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.close{
+    position: relative;
+    width: max-content;
     position: absolute;
     right: 3vw;
     top: 2vw;
-    color: #ffffffc5;
-    font-size: 1.2vw;
-    cursor: pointer;
+}
+
+.close::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: 0.3s all;
+}
+
+.close:hover.close::after{
+    width: 100%;
 }
 
 .top{
@@ -91,7 +132,27 @@
     color: #ffffff;
 }
 
-.navigation button{
+.link_container{
+    position: relative;
+    width: max-content;
+}
+
+.link_container::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: 0.3s all;
+}
+
+.link_container:hover.link_container::after{
+    width: 100%;
+}
+
+.btn{
     padding: 1.2vw 2vw;
     background: none;
     color: #ffffff;
@@ -99,6 +160,29 @@
     border: 1px solid #dadada;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 1vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #ffffff;
+    transition: 0.3s all;
+    z-index: -1;
+}
+
+.btn:hover span{
+    color: #EE5C36;
+}
+
+.btn:hover.btn::before{
+    width: 100%;
 }
 
 .bottom{

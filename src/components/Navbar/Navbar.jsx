@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import reel from "../../assets/reel.mp4";
@@ -8,28 +8,55 @@ import { gsap } from "gsap";
 
 const Navbar = () => {
   const menu_container = useRef(null);
+  const navigation = useRef(null);
   const handleOpen = () => {
-    gsap.fromTo(
+    let tl = gsap.timeline();
+
+    tl.fromTo(
       menu_container.current,
       {
-        y: -1000,
+        y: -800,
       },
-      { y: 0, duration: 1 }
+      {
+        duration: 1,
+        y: 0,
+        ease: "power2.out",
+      }
     );
+
+    let ctx = gsap.context(() => {
+      tl.fromTo(
+        "div, button",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.05, delay: -0.5 }
+      );
+    }, navigation.current);
   };
   const handleClose = () => {
-    gsap.to(menu_container.current, { y: -1000, duration: 2 });
+    let tl = gsap.timeline();
+
+    tl.fromTo(
+      menu_container.current,
+      {
+        y: 0,
+      },
+      {
+        duration: 2,
+        y: -800,
+        ease: "power2.out",
+      }
+    );
   };
 
   return (
     <div className={styles.container}>
       <p>The Production Studio</p>
       <div onClick={handleOpen} className={styles.menu}>
-        Menu
+        <p>Menu</p>
       </div>
       <div ref={menu_container} className={styles.menu_container}>
         <div onClick={handleClose} className={styles.close}>
-          close
+          <p>close</p>
         </div>
         <div className={styles.top}>
           <div className={styles.top_left}>
@@ -43,20 +70,30 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styles.top_right}>
-            <div className={styles.navigation}>
-              <Link className={styles.link} to="/">
-                Home
-              </Link>
-              <Link className={styles.link} to="/work">
-                Work
-              </Link>
-              <Link className={styles.link} to="/artists">
-                Artists
-              </Link>
-              <Link className={styles.link} to="/contact">
-                Contact
-              </Link>
-              <button>Take a seat</button>
+            <div ref={navigation} className={styles.navigation}>
+              <div className={styles.link_container}>
+                <Link className={styles.link} to="/">
+                  Home
+                </Link>
+              </div>
+              <div className={styles.link_container}>
+                <Link className={styles.link} to="/work">
+                  Work
+                </Link>
+              </div>
+              <div className={styles.link_container}>
+                <Link className={styles.link} to="/artists">
+                  Artists
+                </Link>
+              </div>
+              <div className={styles.link_container}>
+                <Link className={styles.link} to="/contact">
+                  Contact
+                </Link>
+              </div>
+              <button className={styles.btn}>
+                <span>Take a seat</span>
+              </button>
             </div>
           </div>
         </div>
